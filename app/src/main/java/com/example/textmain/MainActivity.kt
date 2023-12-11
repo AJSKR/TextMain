@@ -121,6 +121,32 @@ fun MainPage(modifier: Modifier = Modifier) {
                     Text("새끼버튼")
                 }
             }
+            Box(
+                modifier = Modifier.height(40.dp).padding(5.dp).background(Color.DarkGray)
+            ) {
+                Button(
+                    onClick = {
+                        var result = ""
+                        var isFirstNonAlphanum = true
+                        state1.forEach {
+                            when {
+                                it.isLetterOrDigit() -> {
+                                    isFirstNonAlphanum = true
+                                    result += it
+                                }
+                                isFirstNonAlphanum -> {
+                                    isFirstNonAlphanum = false
+                                    result += " $it"
+                                }
+                                else -> result += it
+                            }
+                        }
+                        state2 = result
+                    }
+                ) {
+                    Text("AN")
+                }
+            }
         }
         if (isFlowRowShow) {
             FlowRow {
